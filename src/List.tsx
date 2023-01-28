@@ -1,11 +1,8 @@
+import './List.css'
+
 type Props = {}
+
 export const List = (props: Props) => {
-    let data = true
-    const styleObj = {
-        color: 'white',
-        backgroundColor: data ? 'purple' : 'tomato',
-        padding: '15px',
-    }
     return (
         <>
             <ul>
@@ -13,7 +10,7 @@ export const List = (props: Props) => {
                 <li>List 2</li>
                 <li>List 3</li>
             </ul>
-            <p style={styleObj}>
+            <p className="content">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto
                 tenetur nisi quae consequatur magni et, fugit, quisquam nam
                 aperiam, voluptate adipisci consectetur aspernatur placeat earum
