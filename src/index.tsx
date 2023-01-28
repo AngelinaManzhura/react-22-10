@@ -1,19 +1,49 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { List } from './List'
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+type TitleProps = {
+    name: string
+    text: string
+    year: number
+}
+
+const Title = ({ name, text, year }: TitleProps) => {
+    return (
+        <>
+            <h1>Hello {name}</h1>
+            <p>{text}</p>
+            <div>Year: {year}</div>
+        </>
+    )
+}
+
+const App = () => {
+    return (
+        <div className="app">
+            <Title
+                name="App"
+                text="Lorem ipsum dolor sit, amet consectetur adipisicing elit."
+                year={2023}
+            />
+            <Title
+                name="React"
+                text="Lorem ipsum dolor sit, amet consectetur adipisicing elit."
+                year={2022}
+            />
+            <Title
+                name="TS"
+                text="Lorem ipsum dolor sit, amet consectetur adipisicing elit."
+                year={2021}
+            />
+            <List />
+        </div>
+    )
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>
+)
