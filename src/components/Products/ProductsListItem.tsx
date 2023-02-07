@@ -25,8 +25,15 @@ class ProductsListItem extends Component<Props, State> {
     constructor(props: Props) {
         super(props)
         this.state = {
-            count: 2,
+            count: 1,
         }
+        this.onIncrementClick = this.onIncrementClick.bind(this)
+    }
+
+    onIncrementClick() {
+        this.setState({
+            count: 2,
+        })
     }
 
     render() {
@@ -51,7 +58,12 @@ class ProductsListItem extends Component<Props, State> {
                             size="small"
                             value={this.state.count}
                         ></TextField>
-                        <Button variant="outlined">+</Button>
+                        <Button
+                            variant="outlined"
+                            onClick={this.onIncrementClick}
+                        >
+                            +
+                        </Button>
                     </div>
                 </CardContent>
                 <CardActions className="btns-wrap">
