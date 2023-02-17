@@ -5,6 +5,7 @@ import {
     CardContent,
     TextField,
 } from '@mui/material'
+import { count } from 'console'
 import { Component } from 'react'
 import './ProductsListItem.scss'
 
@@ -19,25 +20,40 @@ type Props = {
 
 type State = {
     count: number
+    decrementDisabled: boolean
 }
 
 class ProductsListItem extends Component<Props, State> {
     state = {
         count: 1,
+        decrementDisabled: true,
     }
 
     onIncrementClick = () => {
         this.setState((prevState) => ({
             count: prevState.count + 1,
+            decrementDisabled: prevState.decrementDisabled
+                ? false
+                : prevState.decrementDisabled,
         }))
     }
 
-    onDecrementClick = (num: number) => {
-        if (this.state.count > 1) {
-            this.setState((prevState) => ({
-                count: prevState.count - num,
-            }))
-        }
+    // onDecrementClick = (num: number) => {
+    //     if (this.state.count > 1) {
+    //         this.setState((prevState) => ({
+    //             count: prevState.count - num,
+    //         }))
+    //     }
+    // }
+
+    onDecrementClick = () => {
+        this.setState((prevState) => {
+            let newCount = prevState.count - 1
+            return {
+                count: newCount,
+                decrementDisabled: newCount === 1 ? true : false,
+            }
+        })
     }
 
     render() {
@@ -58,8 +74,9 @@ class ProductsListItem extends Component<Props, State> {
                     <div className="product-price">{price}$</div>
                     <div className="product-quantity">
                         <Button
+                            disabled={this.state.decrementDisabled}
                             variant="outlined"
-                            onClick={() => this.onDecrementClick(1)}
+                            onClick={this.onDecrementClick}
                         >
                             -
                         </Button>
