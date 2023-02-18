@@ -20,40 +20,23 @@ type Props = {
 
 type State = {
     count: number
-    decrementDisabled: boolean
 }
 
 class ProductsListItem extends Component<Props, State> {
     state = {
         count: 1,
-        decrementDisabled: true,
     }
 
     onIncrementClick = () => {
         this.setState((prevState) => ({
             count: prevState.count + 1,
-            decrementDisabled: prevState.decrementDisabled
-                ? false
-                : prevState.decrementDisabled,
         }))
     }
 
-    // onDecrementClick = (num: number) => {
-    //     if (this.state.count > 1) {
-    //         this.setState((prevState) => ({
-    //             count: prevState.count - num,
-    //         }))
-    //     }
-    // }
-
     onDecrementClick = () => {
-        this.setState((prevState) => {
-            let newCount = prevState.count - 1
-            return {
-                count: newCount,
-                decrementDisabled: newCount === 1 ? true : false,
-            }
-        })
+        this.setState((prevState) => ({
+            count: prevState.count - 1,
+        }))
     }
 
     render() {
@@ -74,7 +57,7 @@ class ProductsListItem extends Component<Props, State> {
                     <div className="product-price">{price}$</div>
                     <div className="product-quantity">
                         <Button
-                            disabled={this.state.decrementDisabled}
+                            disabled={this.state.count <= 1}
                             variant="outlined"
                             onClick={this.onDecrementClick}
                         >
@@ -85,6 +68,7 @@ class ProductsListItem extends Component<Props, State> {
                             value={this.state.count}
                         ></TextField>
                         <Button
+                            disabled={this.state.count >= 10}
                             variant="outlined"
                             onClick={this.onIncrementClick}
                         >
