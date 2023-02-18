@@ -19,11 +19,13 @@ type Props = {
 
 type State = {
     count: number
+    color: string
 }
 
 class ProductsListItem extends Component<Props, State> {
     state = {
         count: 1,
+        color: 'green',
     }
 
     onIncrementClick = () => {
@@ -32,10 +34,24 @@ class ProductsListItem extends Component<Props, State> {
         }))
     }
 
-    onDecrementClick = (num: number) => {
+    onDecrementClick = () => {
         this.setState((prevState) => ({
-            count: prevState.count - num,
+            count: prevState.count - 1,
         }))
+    }
+
+    changeColor = () => {
+        this.setState((prevState) => {
+            if (prevState.color === 'green') {
+                return {
+                    color: 'red',
+                }
+            } else {
+                return {
+                    color: 'green',
+                }
+            }
+        })
     }
 
     render() {
@@ -53,11 +69,19 @@ class ProductsListItem extends Component<Props, State> {
                     <div className="product-features ">
                         Capacity: {capacity} Gb
                     </div>
+                    <p>
+                        Color:{' '}
+                        <span className={this.state.color}>
+                            {this.state.color}
+                        </span>
+                    </p>
+                    <button onClick={this.changeColor}>Change color</button>
                     <div className="product-price">{price}$</div>
                     <div className="product-quantity">
                         <Button
+                            disabled={this.state.count <= 1}
                             variant="outlined"
-                            onClick={() => this.onDecrementClick(2)}
+                            onClick={() => this.onDecrementClick()}
                         >
                             -
                         </Button>
@@ -66,6 +90,7 @@ class ProductsListItem extends Component<Props, State> {
                             value={this.state.count}
                         ></TextField>
                         <Button
+                            disabled={this.state.count >= 10}
                             variant="outlined"
                             onClick={this.onIncrementClick}
                         >
