@@ -77,7 +77,7 @@ class ProductsListItem extends Component<Props, State> {
                     </p>
                     <button onClick={this.changeColor}>Change color</button>
                     <hr />
-                    {this.state.show ? (
+                    {this.state.show && (
                         <p>
                             Lorem ipsum dolor sit amet consectetur adipisicing
                             elit. Dolorum quod, magnam at temporibus veritatis
@@ -85,7 +85,7 @@ class ProductsListItem extends Component<Props, State> {
                             exercitationem, accusamus sed rem, nemo debitis
                             laborum, excepturi qui magni maxime!
                         </p>
-                    ) : null}
+                    )}
                     <button onClick={this.toggleShow}>
                         Show full description
                     </button>
