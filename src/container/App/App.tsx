@@ -7,6 +7,9 @@ import { StyledEngineProvider } from '@mui/material/styles'
 import { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import CartPage from 'pages/CartPage/CartPage'
+import AboutPage from 'pages/AboutPage/AboutPage'
+import ShippingPage from 'pages/ShippingPage/ShippingPage'
+import PaymentPage from 'pages/PaymentPage/PaymentPage'
 
 type Props = {}
 
@@ -41,6 +44,9 @@ const App = (props: Props) => {
                         path="/"
                         element={<Home addProductToCart={addProductToCart} />}
                     />
+                    <Route path="/about" element={<AboutPage />} />
+                    <Route path="/shipping" element={<ShippingPage />} />
+                    <Route path="/payment" element={<PaymentPage />} />
                     <Route path="/cart" element={<CartPage />} />
                 </Routes>
             </Container>
