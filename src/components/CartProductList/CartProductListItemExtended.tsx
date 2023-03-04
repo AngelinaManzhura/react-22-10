@@ -2,6 +2,7 @@ import { Button, Card, CardContent, Grid } from '@mui/material'
 import { Product } from 'utils/productsArray'
 import DeleteIcon from '@mui/icons-material/Delete'
 import Quantity from 'components/Quantity/Quantity'
+import { useState } from 'react'
 
 type Props = {
     product: Product
@@ -14,6 +15,15 @@ const CartProductListItemExtended = ({
     productCount,
     removeProductFromCart,
 }: Props) => {
+    const [count, setCount] = useState<number>(1)
+
+    const onIncrement = () => {
+        setCount((prevState) => prevState + 1)
+    }
+
+    const onDecrement = () => {
+        setCount((prevState) => prevState - 1)
+    }
     return (
         <Grid item xs={12} sm={4}>
             <Card variant="outlined">
@@ -25,9 +35,9 @@ const CartProductListItemExtended = ({
                     <p>Price for one item: {product.price}</p>
                     <p>Count: {productCount}</p>
                     <Quantity
-                        count={productCount}
-                        onDecrement={() => console.log('test')}
-                        onIncrement={() => console.log('test')}
+                        count={count}
+                        onDecrement={onDecrement}
+                        onIncrement={onIncrement}
                     />
                     <br />
                     <Button
