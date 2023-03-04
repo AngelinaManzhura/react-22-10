@@ -1,20 +1,13 @@
 import CartProductList from 'components/CartProductList/CartProductList'
 import CartTotal from 'components/CartTotal/CartTotal'
-import productsArray, { getProductsObject, Product } from 'utils/productsArray'
 
 type Props = {
     productsInCart: {
         [id: number]: number
     }
-    productsObject?: {
-        [id: number]: Product
-    }
 }
 
-const CartHeader = ({
-    productsInCart,
-    productsObject = getProductsObject(productsArray),
-}: Props) => {
+const CartHeader = ({ productsInCart }: Props) => {
     return (
         <div>
             <CartProductList productsInCart={productsInCart} />
