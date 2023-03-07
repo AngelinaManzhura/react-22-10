@@ -1,5 +1,11 @@
-import { Card, CardContent, Typography } from '@mui/material'
-import { divide } from 'lodash'
+import {
+    Button,
+    Card,
+    CardContent,
+    TextareaAutosize,
+    TextField,
+    Typography,
+} from '@mui/material'
 import { useState } from 'react'
 
 type Props = {}
@@ -36,6 +42,19 @@ const Reviews = (props: Props) => {
                     </CardContent>
                 </Card>
             ))}
+            <form>
+                <h3>Please leave a review</h3>
+                <div>
+                    <TextField label="Your name" />
+                </div>
+                <br />
+                <div>
+                    <TextareaAutosize minRows={7} placeholder="Your message" />
+                </div>
+                <Button variant="outlined" type="submit">
+                    Send
+                </Button>
+            </form>
         </>
     )
 }
