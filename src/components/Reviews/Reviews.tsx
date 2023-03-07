@@ -28,6 +28,37 @@ const Reviews = (props: Props) => {
     ]
 
     const [reviews, setReviews] = useState<Review[]>(arrReviews)
+    const [newReview, setNewReview] = useState<Review>({
+        name: '',
+        text: '',
+    })
+
+    const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setNewReview((prevState) => ({
+            ...prevState,
+            name: e.target.value,
+        }))
+    }
+
+    const handleText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setNewReview((prevState) => ({
+            ...prevState,
+            text: e.target.value,
+        }))
+    }
+
+    const sendReview = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+
+        setReviews((prevState) => {
+            return [...prevState, newReview]
+        })
+
+        setNewReview({
+            name: '',
+            text: '',
+        })
+    }
 
     return (
         <>
@@ -42,14 +73,23 @@ const Reviews = (props: Props) => {
                     </CardContent>
                 </Card>
             ))}
-            <form>
+            <form onSubmit={sendReview}>
                 <h3>Please leave a review</h3>
                 <div>
-                    <TextField label="Your name" />
+                    <TextField
+                        label="Your name"
+                        value={newReview.name}
+                        onChange={handleName}
+                    />
                 </div>
                 <br />
                 <div>
-                    <TextareaAutosize minRows={7} placeholder="Your message" />
+                    <TextareaAutosize
+                        minRows={7}
+                        placeholder="Your message"
+                        value={newReview.text}
+                        onChange={handleText}
+                    />
                 </div>
                 <Button variant="outlined" type="submit">
                     Send
