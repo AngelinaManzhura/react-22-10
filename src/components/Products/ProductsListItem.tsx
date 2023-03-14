@@ -14,6 +14,8 @@ type Props = {
     price: number
     image: string
     addProductToCart: (count: number, price: number) => void
+    isLiked: boolean
+    toggleLikeState: (id: number) => void
 }
 
 const ProductsListItem = ({
@@ -25,6 +27,8 @@ const ProductsListItem = ({
     price,
     image,
     addProductToCart,
+    isLiked,
+    toggleLikeState,
 }: Props) => {
     const [count, setCount] = useState<number>(1)
 
@@ -36,12 +40,10 @@ const ProductsListItem = ({
         setCount((prevState) => prevState - 1)
     }
 
-    const isLiked = false
-
     return (
         <Card className="product" variant="outlined">
             <CardContent>
-                <Button variant="outlined">
+                <Button variant="outlined" onClick={() => toggleLikeState(id)}>
                     {isLiked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
                 </Button>
                 <div className="product-image">

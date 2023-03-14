@@ -4,9 +4,17 @@ import productsArray from 'utils/productsArray'
 
 type Props = {
     addProductToCart: (count: number, price: number) => void
+    productsLike: {
+        [id: number]: boolean
+    }
+    toggleLikeState: (id: number) => void
 }
 
-const ProductsList = ({ addProductToCart }: Props) => {
+const ProductsList = ({
+    addProductToCart,
+    productsLike,
+    toggleLikeState,
+}: Props) => {
     return (
         <>
             <Typography
@@ -38,6 +46,8 @@ const ProductsList = ({ addProductToCart }: Props) => {
                                 price={price}
                                 image={image}
                                 addProductToCart={addProductToCart}
+                                isLiked={productsLike[id]}
+                                toggleLikeState={toggleLikeState}
                             />
                         </Grid>
                     )
