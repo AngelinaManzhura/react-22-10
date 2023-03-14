@@ -24,6 +24,7 @@ type ProductsLike = {
 
 type Context = {
     productsLike: ProductsLike
+    removeProductFromCart: (id: number) => void
 }
 
 export const MyContext = createContext<Context | null>(null)
@@ -70,6 +71,7 @@ const App = (props: Props) => {
             <MyContext.Provider
                 value={{
                     productsLike,
+                    removeProductFromCart,
                 }}
             >
                 <Header productsInCart={productsInCart} />
