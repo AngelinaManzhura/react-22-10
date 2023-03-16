@@ -4,6 +4,7 @@ import { useState } from 'react'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import './ProductsListItem.scss'
+import { useAppSelector } from 'redux/hooks'
 
 type Props = {
     id: number
@@ -36,7 +37,7 @@ const ProductsListItem = ({
         setCount((prevState) => prevState - 1)
     }
 
-    const isLiked = false
+    const isLiked = useAppSelector((state) => state.productsLike[id])
 
     return (
         <Card className="product" variant="outlined">
