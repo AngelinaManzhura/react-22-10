@@ -15,7 +15,6 @@ type Props = {
     capacity: string
     price: number
     image: string
-    addProductToCart: (count: number, price: number) => void
 }
 
 const ProductsListItem = ({
@@ -26,7 +25,6 @@ const ProductsListItem = ({
     type,
     price,
     image,
-    addProductToCart,
 }: Props) => {
     const [count, setCount] = useState<number>(1)
 
