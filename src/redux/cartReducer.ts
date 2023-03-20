@@ -1,4 +1,4 @@
-import { AnyAction } from '@reduxjs/toolkit'
+import { AnyAction, createSlice } from '@reduxjs/toolkit'
 import { omit } from 'lodash'
 
 type State = {
@@ -10,26 +10,53 @@ const initialState: State = {
     2: 3,
 }
 
-const cartReducer = (state = initialState, action: AnyAction) => {
-    switch (action.type) {
-        case 'ADD_PRODUCT_TO_CART':
-            return {
-                ...state,
-                [action.id]: (state[action.id] || 0) + action.count,
-            }
+export const cartSlice = createSlice({
+    name: 'productsInCart',
+    initialState,
+    reducers: {
+        addProductToCart: (state, action) => ({
+            ...state,
+            [action.payload.id]:
+                (state[action.payload.id] || 0) + action.payload.count,
+        }),
 
-        case 'REMOVE_PRODUCT_FROM_CART':
-            return omit(state, [action.id])
+        removeProductFromCart: (state, action) => omit(state, action.payload),
 
-        case 'CHANGE_PRODUCT_QUANTITY':
-            return {
-                ...state,
-                [action.id]: action.count,
-            }
+        changeProductQuantity: (state, action) => ({
+            ...state,
+            [action.payload.id]: action.payload.count,
+        }),
+    },
+})
 
-        default:
-            return state
-    }
-}
+export const {
+    addProductToCart,
+    removeProductFromCart,
+    changeProductQuantity,
+} = cartSlice.actions
 
-export default cartReducer
+export default cartSlice.reducer
+
+// const cartReducer = (state = initialState, action: AnyAction) => {
+//     switch (action.type) {
+//         case 'ADD_PRODUCT_TO_CART':
+//             return {
+//                 ...state,
+//                 [action.id]: (state[action.id] || 0) + action.count,
+//             }
+
+//         case 'REMOVE_PRODUCT_FROM_CART':
+//             return omit(state, [action.id])
+
+//         case 'CHANGE_PRODUCT_QUANTITY':
+//             return {
+//                 ...state,
+//                 [action.id]: action.count,
+//             }
+
+//         default:
+//             return state
+//     }
+// }
+
+// export default cartReducer
