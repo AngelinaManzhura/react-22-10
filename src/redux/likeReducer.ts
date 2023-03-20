@@ -1,4 +1,4 @@
-import { AnyAction, createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
 type ProductsLike = {
     [id: number]: boolean
