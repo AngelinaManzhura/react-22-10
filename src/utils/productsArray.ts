@@ -6,7 +6,6 @@ export type Product = {
     capacity: string
     price: number
     image: string
-    fullDescription?: string
 }
 
 const productsArray: Product[] = [
@@ -18,7 +17,6 @@ const productsArray: Product[] = [
         type: 'phone',
         price: 1500,
         image: '/images/iphone-black.jpeg',
-        fullDescription: '<div class="red">This is iPhone 14 Pro</div>',
     },
     {
         id: 2,
