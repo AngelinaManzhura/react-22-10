@@ -5,6 +5,7 @@ import productsArray, { getProductsObject, Product } from 'utils/productsArray'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import { toggleLike } from 'redux/likeReducer'
+import { useState } from 'react'
 
 type Props = {
     productsObject?: {
@@ -15,6 +16,8 @@ type Props = {
 const FavoritesPage = ({
     productsObject = getProductsObject(productsArray),
 }: Props) => {
+    const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false)
+
     const productsLike = useAppSelector((state) => state.productsLike)
 
     const filteredObject = Object.fromEntries(
@@ -58,6 +61,14 @@ const FavoritesPage = ({
                     </Grid>
                 ))}
             </Grid>
+            <br />
+            <button onClick={() => setIsPopupOpen(true)}>Show popup</button>
+            {isPopupOpen && (
+                <div className="popup">
+                    <Title>Hello Popup</Title>
+                    <button onClick={() => setIsPopupOpen(false)}>Close</button>
+                </div>
+            )}
         </>
     )
 }
